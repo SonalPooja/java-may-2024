@@ -55,6 +55,5 @@ public class Calculator {
         System.out.println(a + " % " + b + " = " + res);
         return res;
     }
-
 }
 
