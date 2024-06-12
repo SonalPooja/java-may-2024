@@ -1,32 +1,57 @@
 package ClassWork.jun08;
 
+import java.util.Scanner;
+
 public class TwoDimArray {
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter number of rows in first array : ");
+        int row1 = sc.nextInt();
+        System.out.println("Enter number of columns in first array : ");
+        int col1 = sc.nextInt();
+
         // two-dimensional array
-        int[][] arr1 = new int[3][3];
+        int[][] arr1 = new int[row1][col1];
 
-        arr1[0][0] = 10;
-        arr1[0][1] = 20;
-        arr1[0][2] = 30;
-        arr1[1][0] = 40;
-        arr1[1][1] = 50;
-        arr1[1][2] = 60;
-        arr1[2][0] = 70;
-        arr1[2][1] = 80;
-        arr1[2][2] = 90;
+        System.out.println("Enter elements : ");
 
-        int[][] arr2 = new int[3][3];
+        for (int i = 0; i < row1; i++) {
+            for (int j = 0; j < col1; j++) {
+                arr1[i][j] = sc.nextInt();
+            }
+        }
 
-        arr2[0][0] = 100;
-        arr2[0][1] = 200;
-        arr2[0][2] = 300;
-        arr2[1][0] = 400;
-        arr2[1][1] = 500;
-        arr2[1][2] = 600;
-        arr2[2][0] = 700;
-        arr2[2][1] = 800;
-        arr2[2][2] = 900;
+        System.out.println("First array is : ");
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr1[i].length; j++) {
+                System.out.print(arr1[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println("Enter number of rows in second array : ");
+        int row2 = sc.nextInt();
+        System.out.println("Enter number of columns in second array : ");
+        int col2 = sc.nextInt();
+
+        int[][] arr2 = new int[row2][col2];
+        System.out.println("Enter elements : ");
+        for (int i = 0; i < row2; i++) {
+            for (int j = 0; j < col2; j++) {
+                arr2[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Second array is : ");
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr2[i].length; j++) {
+                System.out.print(arr2[i][j] + " ");
+            }
+            System.out.println();
+        }
 
         // adding two-dimensional array
         int rows = arr1.length;
@@ -39,7 +64,7 @@ public class TwoDimArray {
                 result[i][j] = arr1[i][j] + arr2[i][j];
             }
         }
-
+        System.out.println();
         System.out.println("Sum of both arrays : ");
         System.out.println();
 
