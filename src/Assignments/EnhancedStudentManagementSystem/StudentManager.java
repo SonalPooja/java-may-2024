@@ -40,7 +40,7 @@ public class StudentManager {
             if(students[i].getRollNumber() == rollNumber){
                 students[i] = students[--studentCount];
                 students[studentCount] = null;
-                System.out.println("Student with roll no. " + students[i].getRollNumber() + " removed.");
+                System.out.println("Student with roll no. " + students[i-1].getRollNumber() + " removed.");
                 System.out.println();
             }
         }

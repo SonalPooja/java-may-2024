@@ -1,42 +1,93 @@
 package Assignments.EnhancedStudentManagementSystem;
 
+import java.util.Scanner;
+
 public class StudentMain {
     public static void main(String[] args) {
 
-        double[] grades1 = {85.5, 90.0, 88.0};
-        double[] grades2 = {78.0, 82.5, 80.0};
-        double[] grades3 = {92.0, 95.5, 94.0};
-        double[] grades4 = {90.0, 85.5, 74.0};
+        Scanner scanner = new Scanner(System.in);
 
-        //Creating instances of Student
-        Student student1 = new Student("Sonal", 1, 20, "Computer Science", grades1);
-        Student student2 = new Student("Pooja", 2, 22, "Mathematics", grades2);
-        Student student3 = new Student("Muskan", 3, 25, "Accounting", grades3);
-        Student student4 = new Student("Akash", 4, 28, "Engineering", grades4);
+        StudentManager manager = new StudentManager(20);
 
-        StudentManager studentManager = new StudentManager(20);
+        boolean exit = false;
 
-        //Add students to the StudentManager
-        studentManager.addStudent(student1);
-        studentManager.addStudent(student2);
-        studentManager.addStudent(student3);
-        studentManager.addStudent(student4);
+        while (!exit) {
+            System.out.println("-----------------------------------------");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display All Students");
+            System.out.println("3. Search Student by Roll Number");
+            System.out.println("4. Remove Student by Roll Number");
+            System.out.println("5. Display Top Student");
+            System.out.println("6. Exit");
+            System.out.println("-----------------------------------------");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        //Display all students
-        studentManager.displayAllStudents();
+            switch (choice) {
+                case 1:
+                    System.out.println();
+                    System.out.print("Enter name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter roll number: ");
+                    int rollNumber = scanner.nextInt();
+                    System.out.print("Enter age: ");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter course: ");
+                    String course = scanner.nextLine();
+                    System.out.print("Enter number of grades: ");
+                    int numGrades = scanner.nextInt();
+                    double[] grades = new double[numGrades];
+                    for (int i = 0; i < numGrades; i++) {
+                        System.out.print("Enter grade " + (i + 1) + ": ");
+                        grades[i] = scanner.nextDouble();
+                    }
 
-        //Search for a specific student by roll number
-        Student foundStudent = studentManager.findStudentByRollNumber(1);
-        if (foundStudent != null) {
-            foundStudent.displayInfo();
-            System.out.println();
+                    Student student = new Student(name, rollNumber, age, course, grades);
+                    manager.addStudent(student);
+                    break;
+
+                case 2:
+                    System.out.println();
+                    System.out.println("All Students:");
+                    System.out.println();
+                    manager.displayAllStudents();
+                    break;
+
+                case 3:
+                    System.out.println();
+                    System.out.print("Enter roll number to search: ");
+                    int searchRollNumber = scanner.nextInt();
+                    System.out.println();
+                    Student foundStudent = manager.findStudentByRollNumber(searchRollNumber);
+                    if (foundStudent != null) {
+                        foundStudent.displayInfo();
+                    } else {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println();
+                    System.out.print("Enter roll number to remove: ");
+                    int removeRollNumber = scanner.nextInt();
+                    manager.removeStudentByRollNumber(removeRollNumber);
+                    break;
+
+                case 5:
+                    System.out.println();
+                    manager.displayTopStudent();
+                    System.out.println();
+                    break;
+
+                case 6:
+                    exit = true;
+                    break;
+
+                default:
+                    System.out.println("Choose a valid option.");
+            }
         }
-
-        //Remove a student by roll number
-        studentManager.removeStudentByRollNumber(2);
-
-        //Display the top student with the highest average grade
-        studentManager.displayTopStudent();
-
     }
 }
